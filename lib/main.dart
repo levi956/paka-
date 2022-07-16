@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:paka/app/pages/authentication/sign_in.dart';
 import 'package:paka/app/pages/authentication/sign_up.dart';
+import 'package:paka/app/pages/onboard/onboard.dart';
 import 'package:paka/core/system/set_potrait.dart';
 
 void main() {
@@ -13,10 +16,18 @@ class PakaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Paka',
-      home: SignUp(),
+      theme: ThemeData(
+        textTheme: GoogleFonts.interTextTheme(),
+      ),
+      home: const Onboard(),
     );
   }
 }
+
+
+// implement app first time launch
+// save a key to local storage
+// on app startup, check the key and then direct to login or onboard

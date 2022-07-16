@@ -13,7 +13,9 @@ import 'package:flutter/material.dart';
 import 'package:paka/core/style/theme.dart';
 import 'package:paka/core/system/status_bar.dart';
 import 'package:paka/core/widgets/button.dart';
+import 'package:paka/core/widgets/drop_down.dart';
 import 'package:paka/core/widgets/textfield.dart';
+import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
 
 enum SignUpStage { one, two }
 
@@ -28,18 +30,45 @@ class _SignUpState extends State<SignUp> {
   SignUpStage signUpStage = SignUpStage.one;
   bool isVisible = true;
 
-  int stage = 1;
+// proably make this a provider later on
+  List<String> genderOptions = ['Select your gender', 'Male', 'Female'];
+  List<String> stateOptions = ['Select your state', 'Lagos', 'Abuja'];
+  List<String> lgaOptions = ['Select your LGA', 'Kosofe', 'Yaba'];
 
   String firstName = '';
   String lastName = '';
   String email = '';
   String password = '';
+  String address = '';
+  String state = NigerianStatesAndLGA.allStates[0];
+  String gender = 'Select your gender';
+  String lga = 'Select your LGA';
 
   tooglePassword() {
     setState(() {
       isVisible = !isVisible;
     });
   }
+
+  toogleButtonText() {
+    if (signUpStage == SignUpStage.one) {
+      return 'Continue';
+    } else {
+      return 'Verify account';
+    }
+  }
+
+  List<TextSpan> textSpans = [
+    const TextSpan(text: 'Fill in the details below to create\nyour'),
+    TextSpan(
+      text: ' paka',
+      style: TextStyle(
+        color: PakaTheme.primaryGreen,
+        fontWeight: FontWeight.w700,
+      ),
+    ),
+    const TextSpan(text: ' account'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,30 +86,25 @@ class _SignUpState extends State<SignUp> {
               Column(
                 children: [
                   Text(
-                    'Sign Up',
+                    "Let's get your account setup",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: PakaTheme.primaryBlack),
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    'Fill in the details below to create\nyour paka account.',
+                  RichText(
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        height: 1.5,
+                    text: TextSpan(
+                      style: TextStyle(
+                        color: PakaTheme.primaryBlack,
                         fontSize: 14,
                         fontWeight: FontWeight.w300,
-                        color: PakaTheme.primaryBlack),
+                      ),
+                      children: textSpans,
+                    ),
                   ),
                   const SizedBox(height: 15),
-                  Text(
-                    'STEP $stage OF 3',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: PakaTheme.primaryBlack),
-                  ),
                 ],
               ),
 
@@ -172,25 +196,91 @@ class _SignUpState extends State<SignUp> {
                         });
                       },
                     ),
-                    const SizedBox(height: 60),
-                    CustomButton(
-                      text: 'Continue',
-                      buttonWidth: double.maxFinite,
-                      onPressed: () {},
+                  ],
+                ),
+              //
+              if (signUpStage == SignUpStage.two)
+                Column(
+                  children: [
+                    CustomDropDown(
+                      label: 'Gender',
+                      items: genderOptions
+                          .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (v) {
+                        setState(() {
+                          gender = v!;
+                        });
+                      },
+                      value: gender,
                     ),
-                    const SizedBox(height: 40),
-                    GestureDetector(
-                      onTap: () {},
-                      child: const Text(
-                        "Already registered? Log in",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
+                    const SizedBox(height: 20),
+                    CustomTextField(
+                      label: 'Address',
+                      hintText: 'Enter your address',
+                      keyboardType: TextInputType.streetAddress,
+                      isHidden: false,
+                      onChanged: (v) {
+                        setState(() {
+                          address = v;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    CustomDropDown(
+                      label: 'State',
+                      items: NigerianStatesAndLGA.allStates
+                          .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (v) {
+                        setState(() {
+                          state = v!;
+                        });
+                      },
+                      value: state,
+                    ),
+                    const SizedBox(height: 20),
+                    CustomDropDown(
+                      label: 'LGA',
+                      items: lgaOptions
+                          .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (v) {
+                        setState(() {
+                          lga = v!;
+                        });
+                      },
+                      value: lga,
                     ),
                   ],
                 ),
+
+              const SizedBox(height: 60),
+              CustomButton(
+                text: toogleButtonText(),
+                buttonWidth: double.maxFinite,
+                onPressed: () {
+                  setState(() {
+                    signUpStage = SignUpStage.two;
+                  });
+                },
+              ),
+              const SizedBox(height: 40),
+              Center(
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Text(
+                    "Already registered? Log in",
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
