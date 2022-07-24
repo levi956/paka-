@@ -5,4 +5,5 @@ class PakaTheme {
   static Color lightGrey = const Color(0xFFF7F7F7);
   static Color primaryBlack = const Color(0xFF292929);
   static Color hintTextColor = const Color(0xFFC2C2C2);
+  static Color greyScale = const Color(0xFF8D8D8D);
 }

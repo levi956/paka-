@@ -27,14 +27,7 @@ class _OnboardState extends State<Onboard> {
   }
 
   buttonOnPressed() {
-    if (pageIndex == 0) {
-      setState(() {
-        pageController?.nextPage(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.ease,
-        );
-      });
-    } else if (pageIndex == 1) {
+    if (pageIndex == 0 || pageIndex == 1) {
       setState(() {
         pageController?.nextPage(
           duration: const Duration(milliseconds: 500),
@@ -49,7 +42,6 @@ class _OnboardState extends State<Onboard> {
   @override
   void initState() {
     pageController = PageController(initialPage: pageIndex);
-
     super.initState();
   }
 

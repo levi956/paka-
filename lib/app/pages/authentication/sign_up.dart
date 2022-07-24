@@ -10,6 +10,9 @@
 // onPressed button changes the state from one to two
 
 import 'package:flutter/material.dart';
+import 'package:paka/app/pages/authentication/sign_in.dart';
+import 'package:paka/app/pages/core/dashboard.dart';
+import 'package:paka/core/navigation/navigation.dart';
 import 'package:paka/core/style/theme.dart';
 import 'package:paka/core/system/status_bar.dart';
 import 'package:paka/core/widgets/button.dart';
@@ -58,6 +61,27 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
+  backButtonOnPressed() {
+    if (signUpStage == SignUpStage.one) {
+      pop(context);
+    } else {
+      setState(() {
+        signUpStage = SignUpStage.one;
+      });
+    }
+  }
+
+  mainButtonOnpressed() {
+    if (signUpStage == SignUpStage.one) {
+      setState(() {
+        signUpStage = SignUpStage.two;
+      });
+    } else {
+      // method that registers users goes here
+      pushTo(context, const Dashboard());
+    }
+  }
+
   List<TextSpan> textSpans = [
     const TextSpan(text: 'Fill in the details below to create\nyour'),
     TextSpan(
@@ -77,12 +101,21 @@ class _SignUpState extends State<SignUp> {
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
         body: Padding(
-          padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
               // sign up text with steps
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  iconSize: 19,
+                  color: PakaTheme.primaryGreen,
+                  onPressed: () => backButtonOnPressed(),
+                  icon: const Icon(Icons.arrow_back),
+                ),
+              ),
               Column(
                 children: [
                   Text(
@@ -262,16 +295,12 @@ class _SignUpState extends State<SignUp> {
               CustomButton(
                 text: toogleButtonText(),
                 buttonWidth: double.maxFinite,
-                onPressed: () {
-                  setState(() {
-                    signUpStage = SignUpStage.two;
-                  });
-                },
+                onPressed: () => mainButtonOnpressed(),
               ),
               const SizedBox(height: 40),
               Center(
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () => pushReplacementTo(context, const SignIn()),
                   child: const Text(
                     "Already registered? Log in",
                     style: TextStyle(

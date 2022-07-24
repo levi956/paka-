@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paka/core/system/status_bar.dart';
 
+import '../../../core/navigation/navigation.dart';
 import '../../../core/style/theme.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/textfield.dart';
@@ -44,6 +45,16 @@ class _SignInState extends State<SignIn> {
             const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
         child: ListView(
           children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                iconSize: 19,
+                color: PakaTheme.primaryGreen,
+                onPressed: () => pop(context),
+                icon: const Icon(Icons.arrow_back),
+              ),
+            ),
             Column(
               children: [
                 Text(
@@ -115,7 +126,7 @@ class _SignInState extends State<SignIn> {
             const SizedBox(height: 40),
             Center(
               child: GestureDetector(
-                onTap: () {},
+                onTap: () => pushReplacementTo(context, const SignIn()),
                 child: const Text(
                   "Dont't have an account? Sign up",
                   style: TextStyle(
