@@ -35,7 +35,7 @@ class _SignUpState extends State<SignUp> {
 
 // proably make this a provider later on
   List<String> genderOptions = ['Select your gender', 'Male', 'Female'];
-  List<String> stateOptions = ['Select your state', 'Lagos', 'Abuja'];
+  // List<String> stateOptions = ['Select your state', 'Lagos', 'Abuja'];
   List<String> lgaOptions = ['Select your LGA', 'Kosofe', 'Yaba'];
 
   String firstName = '';

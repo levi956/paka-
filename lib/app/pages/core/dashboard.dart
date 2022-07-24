@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:paka/app/pages/core/homepage.dart';
+import 'package:paka/app/pages/core/pickup_page.dart';
+import 'package:paka/app/pages/report_refuse/report_refuse.dart';
 import 'package:paka/core/style/theme.dart';
 
 import '../../../core/system/status_bar.dart';
@@ -18,9 +20,9 @@ class _DashboardState extends State<Dashboard> {
   int tabIndex = 0;
   final List<Widget> _screens = const [
     HomePage(),
+    PickUpPage(),
     Text('Hello'),
-    Text('Hello'),
-    Text('Hello'),
+    ReportRefusePage(),
     Text('Hello'),
   ];
 

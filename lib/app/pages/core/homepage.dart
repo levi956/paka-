@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
         padding:
@@ -87,7 +88,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                PickUpCard()
+                SizedBox(
+                  height: size.height * 0.5,
+                  child: ListView.separated(
+                    itemCount: 5,
+                    itemBuilder: (_, context) {
+                      return const PickUpCard();
+                    },
+                    separatorBuilder: (_, context) {
+                      return const Divider();
+                    },
+                  ),
+                ),
               ],
             ),
           ],

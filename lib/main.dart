@@ -31,7 +31,7 @@ class _PakaAppState extends State<PakaApp> {
       theme: ThemeData(
         textTheme: GoogleFonts.interTextTheme(),
       ),
-      home: const Dashboard(),
+      home: const Onboard(),
     );
   }
 }

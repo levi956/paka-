@@ -6,7 +6,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? keyboardType;
 
   final ValueChanged<String>? onChanged;
-  final bool? isHidden;
+  final bool isHidden;
   final String? hintText;
 
   const CustomTextField(
@@ -14,7 +14,7 @@ class CustomTextField extends StatelessWidget {
       required this.label,
       this.hintText,
       this.keyboardType,
-      this.isHidden,
+      required this.isHidden,
       this.onChanged})
       : super(key: key);
 
@@ -41,7 +41,7 @@ class CustomTextField extends StatelessWidget {
           ),
           child: TextField(
             autocorrect: false,
-            obscureText: isHidden!,
+            obscureText: isHidden,
             cursorColor: PakaTheme.primaryGreen,
             keyboardType: keyboardType,
             onChanged: onChanged,
