@@ -33,7 +33,7 @@ class _ReportRefusePageState extends State<ReportRefusePage> {
     return Scaffold(
       body: Padding(
         padding:
-            const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
+            const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
         child: ListView(
           children: [
             Column(

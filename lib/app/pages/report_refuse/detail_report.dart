@@ -41,7 +41,7 @@ class _DetailedReportPageState extends State<DetailedReportPage> {
         ),
         body: Padding(
           padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
+              const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
           child: ListView(
             children: [
               Column(

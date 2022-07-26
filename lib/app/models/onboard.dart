@@ -8,14 +8,14 @@ class OnboardModel {
 List<OnboardModel> onboardList = [
   OnboardModel(
     title: 'Never worry about\ntaking out trash again',
-    imagePath: '',
+    imagePath: 'assets/images/onboard1.png',
   ),
   OnboardModel(
     title: 'Schedule Pickups at\nyour convenience',
-    imagePath: '',
+    imagePath: 'assets/images/onboard2.png',
   ),
   OnboardModel(
     title: 'Do your part by\nsaving the world',
-    imagePath: '',
+    imagePath: 'assets/images/onboard3.png',
   ),
 ];

@@ -47,6 +47,7 @@ class _OnboardState extends State<Onboard> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     setStatusBarColor(color: BarColor.black);
     return Scaffold(
       body: Padding(
@@ -70,7 +71,7 @@ class _OnboardState extends State<Onboard> {
                   )
                 : const SizedBox(height: 17),
             SizedBox(
-              height: 400,
+              height: screenSize.height * 0.57,
               child: PageView.builder(
                 itemCount: onboardList.length,
                 controller: pageController,
@@ -83,9 +84,7 @@ class _OnboardState extends State<Onboard> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 100),
-
-                      // image widget goes here
+                      const SizedBox(height: 50),
 
                       Text(
                         onboardList[index].title!,
@@ -95,11 +94,29 @@ class _OnboardState extends State<Onboard> {
                           fontSize: 24,
                         ),
                       ),
+                      const SizedBox(height: 40),
+                      // image widget goes here
+                      SizedBox(
+                        height: screenSize.height * 0.3,
+                        width: screenSize.width * 0.8,
+                        child: Image.asset(
+                          onboardList[index].imagePath!,
+                          // fit: BoxFit.contain,
+                        ),
+                      ),
                     ],
                   );
                 },
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                3,
+                (index) => buildDot(index, context),
+              ),
+            ),
+            const SizedBox(height: 40),
             CustomButton(
               text: toogleButtonText(),
               onPressed: () => buttonOnPressed(),
@@ -116,6 +133,21 @@ class _OnboardState extends State<Onboard> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  // dot notifier widget
+  Container buildDot(int index, BuildContext context) {
+    return Container(
+      height: 9.2,
+      width: 12.87,
+      margin: const EdgeInsets.only(left: 2),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: pageIndex == index
+            ? const Color(0xFFFE8343)
+            : const Color(0xFFD2D0D0),
       ),
     );
   }

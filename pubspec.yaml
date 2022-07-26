@@ -19,6 +19,7 @@ dependencies:
   uuid: ^3.0.6
   flutter_riverpod: ^1.0.4
   is_first_run: ^1.0.0
+  flutter_launcher_icons: ^0.9.3
   flutter:
     sdk: flutter
 
@@ -34,6 +35,12 @@ dev_dependencies:
 
 
 flutter:
+
+
+# flutter_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path: "assets/images/paka_logo.png"
 
 
   uses-material-design: true
