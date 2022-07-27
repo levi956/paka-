@@ -47,7 +47,7 @@ class _OnboardState extends State<Onboard> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
     setStatusBarColor(color: BarColor.black);
     return Scaffold(
       body: Padding(
