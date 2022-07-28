@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paka/app/pages/authentication/sign_up.dart';
 import 'package:paka/core/system/status_bar.dart';
 
 import '../../../core/navigation/navigation.dart';
@@ -126,7 +127,7 @@ class _SignInState extends State<SignIn> {
             const SizedBox(height: 40),
             Center(
               child: GestureDetector(
-                onTap: () => pushReplacementTo(context, const SignIn()),
+                onTap: () => pushReplacementTo(context, const SignUp()),
                 child: const Text(
                   "Dont't have an account? Sign up",
                   style: TextStyle(

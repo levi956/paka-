@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:paka/app/pages/core/homepage.dart';
 import 'package:paka/app/pages/core/pickup_page.dart';
+import 'package:paka/app/pages/core/settings.dart';
 import 'package:paka/app/pages/report_refuse/report_refuse.dart';
 import 'package:paka/core/style/theme.dart';
 
@@ -21,9 +22,8 @@ class _DashboardState extends State<Dashboard> {
   final List<Widget> _screens = const [
     HomePage(),
     PickUpPage(),
-    Text('Hello'),
     ReportRefusePage(),
-    Text('Hello'),
+    SettingsPage(),
   ];
 
   @override
@@ -56,8 +56,6 @@ class _DashboardState extends State<Dashboard> {
             icon: Icon(LineAwesomeIcons.trash),
             label: 'Pick-up',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(LineAwesomeIcons.calendar), label: 'Calender'),
           BottomNavigationBarItem(
             icon: Icon(LineAwesomeIcons.comment_dots),
             label: 'Report',
