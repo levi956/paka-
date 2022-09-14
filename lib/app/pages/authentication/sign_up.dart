@@ -19,6 +19,7 @@ import 'package:paka/core/widgets/button.dart';
 import 'package:paka/core/widgets/drop_down.dart';
 import 'package:paka/core/widgets/textfield.dart';
 import 'package:nigerian_states_and_lga/nigerian_states_and_lga.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum SignUpStage { one, two }
 
@@ -32,6 +33,8 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   SignUpStage signUpStage = SignUpStage.one;
   bool isVisible = true;
+
+  var genderIndex;
 
 // proably make this a provider later on
   List<String> genderOptions = ['Select your gender', 'Male', 'Female'];
@@ -77,8 +80,9 @@ class _SignUpState extends State<SignUp> {
         signUpStage = SignUpStage.two;
       });
     } else {
-      // method that registers users goes here
+      // saveFakeCred();
       pushTo(context, const Dashboard());
+      // print(genderIndex);
     }
   }
 
@@ -245,6 +249,9 @@ class _SignUpState extends State<SignUp> {
                         setState(() {
                           gender = v!;
                         });
+                        genderIndex = genderOptions.indexOf(v!).toString();
+                        print(genderIndex.runtimeType);
+                        // print(genderOptions.indexOf(v!));
                       },
                       value: gender,
                     ),
@@ -315,5 +322,14 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  saveFakeCred() async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setString('email', email);
+    pref.setBool('logged', true);
+    pref.setString('name', firstName);
+    final test = pref.getString('email');
+    print(test);
   }
 }

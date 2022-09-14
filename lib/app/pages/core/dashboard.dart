@@ -5,6 +5,7 @@ import 'package:paka/app/pages/core/homepage.dart';
 import 'package:paka/app/pages/core/pickup_page.dart';
 import 'package:paka/app/pages/core/settings.dart';
 import 'package:paka/app/pages/report_refuse/report_refuse.dart';
+import 'package:paka/core/repository/repository.dart';
 import 'package:paka/core/style/theme.dart';
 
 import '../../../core/system/status_bar.dart';
@@ -25,6 +26,12 @@ class _DashboardState extends State<Dashboard> {
     ReportRefusePage(),
     SettingsPage(),
   ];
+
+  @override
+  void initState() {
+    ExpireSession.expireUserSession(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

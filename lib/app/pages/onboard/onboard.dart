@@ -3,6 +3,7 @@ import 'package:paka/app/models/onboard.dart';
 import 'package:paka/app/pages/authentication/sign_up.dart';
 import 'package:paka/core/navigation/navigation.dart';
 import 'package:paka/core/widgets/button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/system/status_bar.dart';
 

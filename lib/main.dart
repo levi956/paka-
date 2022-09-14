@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:paka/app/pages/core/dashboard.dart';
+import 'package:paka/app/pages/authentication/sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'app/pages/onboard/onboard.dart';
 import 'core/repository/repository.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  final logged = pref.getBool('logged') ?? false;
   Repository.init();
   runApp(
-    const ProviderScope(
-      child: PakaApp(),
+    PakaApp(
+      isData: logged,
     ),
   );
 }
 
 class PakaApp extends StatefulWidget {
-  const PakaApp({Key? key}) : super(key: key);
+  final bool? isData;
+  const PakaApp({Key? key, this.isData}) : super(key: key);
 
   @override
   State<PakaApp> createState() => _PakaAppState();
@@ -31,7 +34,7 @@ class _PakaAppState extends State<PakaApp> {
       theme: ThemeData(
         textTheme: GoogleFonts.interTextTheme(),
       ),
-      home: const Dashboard(),
+      home: widget.isData! ? const SignIn() : const Onboard(),
     );
   }
 }

@@ -46,16 +46,6 @@ class _SignInState extends State<SignIn> {
             const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 20),
         child: ListView(
           children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                padding: EdgeInsets.zero,
-                iconSize: 19,
-                color: PakaTheme.primaryGreen,
-                onPressed: () => pop(context),
-                icon: const Icon(Icons.arrow_back),
-              ),
-            ),
             Column(
               children: [
                 Text(
